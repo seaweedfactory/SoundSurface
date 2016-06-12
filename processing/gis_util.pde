@@ -1,10 +1,31 @@
 public GISPoint[] readPoints(String filename)
 {
   String[] lines = loadStrings(filename);
-  GISPoint[] gps = new GISPoint[lines.length];
-  for (int i=0; i < lines.length; i++) 
+  
+  int cleanLinesLength = 0;
+  for(int u=0; u < lines.length; u++)
   {
-    String[] tokens=split(lines[i], ',');
+    if(lines[u] != null && lines[u].indexOf("start") == -1 && lines[u].length() > 0)
+    {
+      cleanLinesLength++;
+    }
+  }
+  
+  String[] cleanLines = new String[cleanLinesLength];
+  int cleanIndex = 0;
+  for(int u=0; u < lines.length; u++)
+  {
+    if(lines[u] != null && lines[u].indexOf("start") == -1 && lines[u].length() > 0)
+    {
+      cleanLines[cleanIndex] = lines[u];
+      cleanIndex++;
+    }
+  }
+  
+  GISPoint[] gps = new GISPoint[cleanLines.length];
+  for (int i=0; i < cleanLines.length; i++) 
+  {
+    String[] tokens=split(cleanLines[i], ',');   
     GISPoint gp = new GISPoint();
     String lat = tokens[0];
     String lon = tokens[1];
@@ -37,7 +58,6 @@ public GISPoint[] readPoints(String filename)
 
     gps[i] = gp;
   }
-
   return gps;
 }
 

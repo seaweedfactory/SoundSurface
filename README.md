@@ -7,6 +7,9 @@ The height of each point is determined by the ambient sound level, while the pos
 
 I tried to show how an invisible force like noise maps to the visible world of light. The mesh degradation shows how noise can be equally as disruptive as visible light.
 
+# StaticSoundSurface
+This class is used for creating large scale static images of a dataset. Rendering is done in wireframe and all light data is ignored. Several rendering parameters are available in this class.
+
 #Processing Libraries
 The sketch uses the Triangulate and peasycam libraries. As the sketch was produced in processing 1.5.1, an earlier version of the peasycam library was required. Copies of the jar for each library used have been included.
 
